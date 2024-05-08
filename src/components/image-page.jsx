@@ -23,6 +23,7 @@ To read more about using these font, please visit the Next.js documentation:
 - App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
+'use client'
 import { Button } from "@/components/ui/button"
 
 export function ImagePage({image}) {
@@ -55,7 +56,7 @@ export function ImagePage({image}) {
             <h2 className="text-lg font-medium inline-block">Image Details</h2>
             <div className="download inline-block float-right">
               <Button>
-              <a href={image.url} download={"sopai.png"}>Download</a>
+              <a href={"#"} download={"sopai.png"} onClick={()=>downloadImageAsBase64(image.url)}>Download</a>
               </Button>
             </div>
             <div className="line"></div>
@@ -109,4 +110,28 @@ export function ImagePage({image}) {
       </div>
     </main>)
   );
+}
+
+
+export function downloadImageAsBase64(imageUrl) {
+  fetch(imageUrl)
+      .then(response => response.blob())
+      .then(blob => {
+          const reader = new FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = () => {
+              const base64data = reader.result;
+              
+              // Create an <a> element for downloading
+              const anchor = document.createElement('a');
+              anchor.href = base64data;
+              anchor.download = 'downloadedImage.png'; // You can specify the extension
+
+              // Append, click and remove the anchor from DOM
+              document.body.appendChild(anchor);
+              anchor.click();
+              document.body.removeChild(anchor);
+          };
+      })
+      .catch(error => console.error('Error fetching and converting the image:', error));
 }
