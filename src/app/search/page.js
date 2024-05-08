@@ -1,10 +1,11 @@
 import { ImageFeed, ImageFeeds } from '@/components/image-feeds';
 import getImageSearch from './getImageSearch';
 
-export default async function page(req,res) {
+export default async function page({searchParams}) {
     // let url = new URL(req.url);
     // let q = url.searchParams.get("q");
-    let q = "girl";
+    console.log(req);
+    let q = searchParams.q || "girl";
     let images = await getImageSearch(q)
   return (
     <>
