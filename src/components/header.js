@@ -12,7 +12,7 @@ export default function Header() {
         className="flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-50"
         href="#">
         <MountainIcon className="h-6 w-6" />
-        <span>Civitai</span>
+        <span>SopAI</span>
       </Link>
       <nav className="hidden md:flex items-center gap-4">
         <Link

@@ -23,169 +23,66 @@ To read more about using these font, please visit the Next.js documentation:
 - App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
+import getImages from "@/app/functions/getImages";
 import Link from "next/link"
 
-export function ImageFeeds() {
+export async function ImageFeeds() {
+  const images = await getImages();
   return (
     (<main className="container mx-auto py-12 px-4 md:px-6">
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">All Images</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <Link className="relative group" href="#">
-            <img
-              alt="Image 1"
-              className="w-full h-60 object-cover rounded-lg group-hover:opacity-80 transition-opacity"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/300",
-                objectFit: "cover",
-              }}
-              width={300} />
-            <div
-              className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-colors">
-              <span
-                className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                View
-              </span>
-            </div>
-          </Link>
-          <Link className="relative group" href="#">
-            <img
-              alt="Image 2"
-              className="w-full h-60 object-cover rounded-lg group-hover:opacity-80 transition-opacity"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/300",
-                objectFit: "cover",
-              }}
-              width={300} />
-            <div
-              className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-colors">
-              <span
-                className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                View
-              </span>
-            </div>
-          </Link>
-          <Link className="relative group" href="#">
-            <img
-              alt="Image 3"
-              className="w-full h-60 object-cover rounded-lg group-hover:opacity-80 transition-opacity"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/300",
-                objectFit: "cover",
-              }}
-              width={300} />
-            <div
-              className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-colors">
-              <span
-                className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                View
-              </span>
-            </div>
-          </Link>
-          <Link className="relative group" href="#">
-            <img
-              alt="Image 4"
-              className="w-full h-60 object-cover rounded-lg group-hover:opacity-80 transition-opacity"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/300",
-                objectFit: "cover",
-              }}
-              width={300} />
-            <div
-              className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-colors">
-              <span
-                className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                View
-              </span>
-            </div>
-          </Link>
-          <Link className="relative group" href="#">
-            <img
-              alt="Image 5"
-              className="w-full h-60 object-cover rounded-lg group-hover:opacity-80 transition-opacity"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/300",
-                objectFit: "cover",
-              }}
-              width={300} />
-            <div
-              className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-colors">
-              <span
-                className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                View
-              </span>
-            </div>
-          </Link>
-          <Link className="relative group" href="#">
-            <img
-              alt="Image 6"
-              className="w-full h-60 object-cover rounded-lg group-hover:opacity-80 transition-opacity"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/300",
-                objectFit: "cover",
-              }}
-              width={300} />
-            <div
-              className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-colors">
-              <span
-                className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                View
-              </span>
-            </div>
-          </Link>
-          <Link className="relative group" href="#">
-            <img
-              alt="Image 7"
-              className="w-full h-60 object-cover rounded-lg group-hover:opacity-80 transition-opacity"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/300",
-                objectFit: "cover",
-              }}
-              width={300} />
-            <div
-              className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-colors">
-              <span
-                className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                View
-              </span>
-            </div>
-          </Link>
-          <Link className="relative group" href="#">
-            <img
-              alt="Image 8"
-              className="w-full h-60 object-cover rounded-lg group-hover:opacity-80 transition-opacity"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/300",
-                objectFit: "cover",
-              }}
-              width={300} />
-            <div
-              className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-colors">
-              <span
-                className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                View
-              </span>
-            </div>
-          </Link>
+          {
+            images.items.map((image,i)=> {
+
+             return <ImageFeed image={image} key={i}/>
+            })
+            // JSON.stringify(images)
+          }
+
+          
         </div>
       </section>
-      <section className="mb-12">
+   
+    </main>)
+  );
+}
+
+
+export function ImageFeed ({image}) {
+  return <Link className="relative group" href={"/image/"+image.id}>
+  <img
+    alt="Image 1"
+    className="w-full ch-60 object-cover rounded-lg group-hover:opacity-80 transition-opacity"
+    height={768}
+    src={image.url || "/placeholder.svg"}
+    style={{
+      aspectRatio: "512/768",
+      objectFit: "cover",
+    }}
+    width={512} 
+    />
+  <div
+    className="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-50 flex flex-col items-center justify-center transition-colors">
+    <div
+      className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+      View
+    </div>
+    <br />
+    <div
+    className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity"
+    >
+      {image?.meta?.prompt?.substring(1,20)}
+    </div>
+  </div>
+</Link>
+}
+
+export function TopFeeds() {
+  return <>
+  
+  <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Categories</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <Link className="relative group" href="#">
@@ -428,6 +325,5 @@ export function ImageFeeds() {
           </Link>
         </div>
       </section>
-    </main>)
-  );
+      </>
 }
