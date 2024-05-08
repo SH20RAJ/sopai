@@ -54,6 +54,7 @@ export default function Feeds() {
             Load More
           </button>
         )}
+        
 
         </center>
       </section>
