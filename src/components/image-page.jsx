@@ -39,7 +39,7 @@ export function ImagePage({image}) {
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg  h-full w-1/2">
           <img
             alt="AI-generated image"
-            className="w-full h-auto object-cover"
+            className="w-full h-auto object-cover rounded-lg"
             // height={6}
             // height={768}
             src={image.url || "/placeholder.svg"}
