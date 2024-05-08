@@ -53,8 +53,9 @@ export function ImagePage({image}) {
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg h-full p-10 w-1/3">
           <div>
             <h2 className="text-lg font-medium">Image Details</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="line"></div>
+            </div>
+          <div className="flex flex-col gap-8 my-10">
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400">AI Model</p>
               <p>Stable Diffusion v2</p>
@@ -65,7 +66,9 @@ export function ImagePage({image}) {
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400">Prompt</p>
-              <p>A surreal landscape with floating islands and a colorful sky</p>
+              <p>{
+              image.meta.prompt
+              }</p>
             </div>
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400">Resolution</p>
@@ -73,8 +76,9 @@ export function ImagePage({image}) {
             </div>
           </div>
           <div>
-            <h2 className="text-lg font-medium">Prompt Options</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mt-4">
+            <h2 className="text-lg font-medium">Tags</h2>
+            <div className="line"></div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mt-10">
               <Button size="sm" variant="outline">
                 Surreal
               </Button>

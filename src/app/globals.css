@@ -74,3 +74,11 @@
       @apply bg-background text-foreground;
     }
   }
+
+
+  .line {
+   width: 100%;
+   background: blue;
+    height: 4px;
+    margin: 10px 0;
+  }
