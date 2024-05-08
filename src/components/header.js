@@ -37,12 +37,15 @@ export default function Header() {
         </Link>
       </nav>
       <div className="relative w-full max-w-md">
+        <form action="/search" method="get">
         <SearchIcon
           className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500 dark:text-gray-400" />
         <Input
           className="w-full bg-white dark:bg-gray-950 pl-10 pr-4 py-2 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-500 dark:focus:ring-gray-300"
           placeholder="Search for assets..."
+          name="q"
           type="search" />
+          </form>
       </div>
     </div>
   </header>
