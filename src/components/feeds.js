@@ -1,34 +1,23 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react';
-import { ImageFeed } from './image-feeds';
+import { ImageFeed } from './image-feeds'; // Assuming you have ImageFeed component
 
 export default function Feeds() {
   const [images, setImages] = useState({ items: [] });
-  const [page, setPage] = useState(1);
+  const [cursor, setCursor] = useState('12222');
 
   useEffect(() => {
     loadImages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    function handleScroll() {
-      if (
-        window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight
-      )
-        return;
-      loadMoreImages();
-    }
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [page]); // Add page to the dependencies array
-
   async function loadImages() {
     try {
-      const data = await getImages();
+      const data = await getImages(cursor);
       setImages(data);
+      if (data.metadata.nextCursor) {
+        setCursor(data.metadata.nextCursor);
+      }
     } catch (error) {
       console.error('Error loading images:', error);
     }
@@ -36,11 +25,15 @@ export default function Feeds() {
 
   async function loadMoreImages() {
     try {
-      const nextPageImages = await getImages(page + 1);
+      const nextPageImages = await getImages(cursor);
       setImages((prevImages) => ({
         items: [...prevImages.items, ...nextPageImages.items],
       }));
-      setPage((prevPage) => prevPage + 1);
+      if (nextPageImages.metadata.nextCursor) {
+        setCursor(nextPageImages.metadata.nextCursor);
+      } else {
+        setCursor('');
+      }
     } catch (error) {
       console.error('Error loading more images:', error);
     }
@@ -55,13 +48,21 @@ export default function Feeds() {
             <ImageFeed image={image} key={i} />
           ))}
         </div>
+        <center>
+        {cursor && (
+          <button onClick={loadMoreImages} className="mt-4 py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600">
+            Load More
+          </button>
+        )}
+
+        </center>
       </section>
     </main>
   );
 }
 
-async function getImages(page = 1) {
-  const response = await fetch(`https://civitai.com/api/v1/images?page=${page}`);
+async function getImages(cursor) {
+  const response = await fetch(`https://civitai.com/api/v1/images?cursor=${cursor}`);
   const data = await response.json();
   return data;
 }
