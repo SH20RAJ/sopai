@@ -25,11 +25,14 @@ To read more about using these font, please visit the Next.js documentation:
 **/
 import getImages from "@/app/functions/getImages";
 import Link from "next/link"
+import Feeds from "./feeds";
 
 export async function ImageFeeds() {
   const images = await getImages();
   return (
-    (<main className="container mx-auto py-12 px-4 md:px-6">
+    (
+      <>
+      <main className="container mx-auto py-12 px-4 md:px-6">
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">All Images</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -45,7 +48,13 @@ export async function ImageFeeds() {
         </div>
       </section>
    
-    </main>)
+    </main>
+    <Feeds/>
+    </>
+
+
+    
+  )
   );
 }
 

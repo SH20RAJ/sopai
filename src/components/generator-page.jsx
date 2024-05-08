@@ -23,7 +23,13 @@ import { Button } from "@/components/ui/button"
 
 export function GeneratorPage() {
   return (
-    (<div className="grid grid-cols-[300px_1fr] gap-6 p-6 w-full h-full">
+    (
+    <div className="grid grid-cols-[300px_1fr] gap-6 p-6 w-full h-full">
+      <div
+        className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 flex flex-col gap-6 col-span-2">
+        <h3 className="text-lg font-semibold">Generated Images</h3>
+        <div className="grid grid-cols-4 gap-4" />
+      </div>
       <div
         className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 flex flex-col gap-6">
         <div>
@@ -85,11 +91,7 @@ export function GeneratorPage() {
           <Button variant="outline">Regenerate</Button>
         </div>
       </div>
-      <div
-        className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 flex flex-col gap-6 col-span-2">
-        <h3 className="text-lg font-semibold">Generated Images</h3>
-        <div className="grid grid-cols-4 gap-4" />
-      </div>
+      
     </div>)
   );
 }
