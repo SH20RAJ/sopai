@@ -52,7 +52,12 @@ export function ImagePage({image}) {
         </div>
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg h-full p-10 w-1/3">
           <div>
-            <h2 className="text-lg font-medium">Image Details</h2>
+            <h2 className="text-lg font-medium inline-block">Image Details</h2>
+            <div className="download inline-block float-right">
+              <Button>
+              <a href={image.url} download={"sopai.png"}>Download</a>
+              </Button>
+            </div>
             <div className="line"></div>
             </div>
           <div className="flex flex-col gap-8 my-10">
@@ -60,6 +65,7 @@ export function ImagePage({image}) {
               <p className="text-sm text-gray-500 dark:text-gray-400">AI Model</p>
               <p>Stable Diffusion v2</p>
             </div>
+          
             <div>
               <p className="text-sm text-gray-500 dark:text-gray-400">Generation Date</p>
               <p>May 8, 2024</p>
