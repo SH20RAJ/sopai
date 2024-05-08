@@ -11,7 +11,7 @@ function generateRandomNumber(min, max) {
   }
   
   
-  // Mock function to fetch images (replace this with your actual implementation)
+  // Mock function to fetch images (replace this with your actual implementation)c
   let getdata = async (params,limit) => {
     const response = await fetch(
       `https://dev.to/api/images/latest/?per_page=${limit}&page=${
