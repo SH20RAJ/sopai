@@ -12,25 +12,27 @@ function generateRandomNumber(min, max) {
   
   // Mock function to fetch images (replace this with your actual implementation)c
   let getData = async (page = 1,limit) => {
-    let data = await fetch("https://civitai.com/api/v1/images?page="+page);
+    let data = await fetch("https://civitai.com/api/v1/images?cursor="+page);
     data = await data.json();
     return data;
   };
   
   export async function GET(req, res) {
     const url = new URL(req.url)
+    // let id = req.url.split('/')[4]
+    // console.log(params);
     if (req.method === "GET") {
       try {
         // Fetch images from Dev.to or your database
   
-        let id = url.searchParams.has("limit") ? url.searchParams.get("limit") : 1000;
+        // let id = url.searchParams.has("limit") ? url.searchParams.get("limit") : 1000;
         
-        console.log("id",id);
+        // console.log("id",id);
 
-        let images = await getData()
+        let images = await getData(generateRandomNumber(1,10000))
 
         images = images.items
-        console.log("images",images[0]);
+        // console.log("images",images[0]);
   
         // Start building the XML
         let xml = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -39,7 +41,7 @@ function generateRandomNumber(min, max) {
         // Add each image URL to the sitemap
         images.forEach((image) => {
           xml += "<url>";
-          xml += `<loc>${url.origin +"/"+ image.id}</loc>`; // Modify URL structure as needed
+          xml += `<loc>${url.origin +"/image/"+ image.id}</loc>`; // Modify URL structure as needed
         //   xml += `<lastmod>${new Date(
         //     image.published_at
         //   ).toISOString()}</lastmod>`; // Use published date as last modified
