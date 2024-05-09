@@ -1,4 +1,5 @@
 import getImage from '@/app/functions/getImage';
+import Feeds from '@/components/feeds';
 import { ImagePage } from '@/components/image-page';
 
 let x;
@@ -64,6 +65,7 @@ export default async function page({params}) {
   return (
     <>
     <ImagePage image={image}/>
+    <Feeds/>
     </>
   )
 }
