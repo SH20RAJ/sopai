@@ -18,154 +18,66 @@ To read more about using these font, please visit the Next.js documentation:
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/}
 import Link from "next/link"
-import { Input } from "@/components/ui/input"
-import Header from "./header";
-import { ImageFeeds } from "./image-feeds";
+import Image from "next/image"
+import { ImageFeeds } from "./image-feeds"
+import CivitaiPage from "@/app/civitai/page"
 
 export function MainPage() {
-  return (<>
-    <ImageFeeds/>
-    <main className="container mx-auto px-4 md:px-6 py-8">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50">3D Models</h1>
-        <p className="text-gray-600 dark:text-gray-400">Browse our collection of high-quality 3D models.</p>
+  return (
+    <div className="flex flex-col items-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-4xl space-y-12">
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-5xl md:text-6xl">
+            Create Amazing Images with AI
+          </h1>
+          <p className="max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-400">
+            Transform your ideas into stunning visuals instantly
+          </p>
+        </div>
+
+        <div className="flex justify-center">
+          <div className="w-full max-w-2xl relative">
+            <input
+              type="text"
+              className="w-full h-12 px-4 rounded-full border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-gray-100"
+              placeholder="Describe the image you want to create..."
+              aria-label="Image description input"
+            />
+            <button
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors"
+              aria-label="Generate image"
+            >
+              Generate
+            </button>
+          </div>
+        </div>
+
+        <section aria-label="Recent generations" className="space-y-6">
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-50">Recent Generations</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((item) => (
+              <article key={item} className="group relative rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02]">
+                <Link href="#" className="block aspect-square relative" aria-label={`View generated image ${item}`}>
+                  <Image
+                    src="/placeholder.svg"
+                    alt={`AI Generated Image ${item}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={item === 1}
+                    loading={item === 1 ? 'eager' : 'lazy'}
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">View Details</span>
+                  </div>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div className="relative group overflow-hidden rounded-lg">
-          <Link className="absolute inset-0 z-10" href="#">
-            <span className="sr-only">View</span>
-          </Link>
-          <img
-            alt="3D Model 1"
-            className="object-cover w-full h-60"
-            height={300}
-            src="/placeholder.svg"
-            style={{
-              aspectRatio: "400/300",
-              objectFit: "cover",
-            }}
-            width={400} />
-          <div
-            className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="text-white text-center space-y-2">
-              <h3 className="text-lg font-semibold">Futuristic Robot</h3>
-              <p className="text-sm">A highly detailed 3D model of a futuristic robot.</p>
-            </div>
-          </div>
-        </div>
-        <div className="relative group overflow-hidden rounded-lg">
-          <Link className="absolute inset-0 z-10" href="#">
-            <span className="sr-only">View</span>
-          </Link>
-          <img
-            alt="3D Model 2"
-            className="object-cover w-full h-60"
-            height={300}
-            src="/placeholder.svg"
-            style={{
-              aspectRatio: "400/300",
-              objectFit: "cover",
-            }}
-            width={400} />
-          <div
-            className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="text-white text-center space-y-2">
-              <h3 className="text-lg font-semibold">Sci-Fi Weapon</h3>
-              <p className="text-sm">A high-tech sci-fi weapon with intricate details.</p>
-            </div>
-          </div>
-        </div>
-        <div className="relative group overflow-hidden rounded-lg">
-          <Link className="absolute inset-0 z-10" href="#">
-            <span className="sr-only">View</span>
-          </Link>
-          <img
-            alt="3D Model 3"
-            className="object-cover w-full h-60"
-            height={300}
-            src="/placeholder.svg"
-            style={{
-              aspectRatio: "400/300",
-              objectFit: "cover",
-            }}
-            width={400} />
-          <div
-            className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="text-white text-center space-y-2">
-              <h3 className="text-lg font-semibold">Fantasy Creature</h3>
-              <p className="text-sm">A mythical creature with intricate details and textures.</p>
-            </div>
-          </div>
-        </div>
-        <div className="relative group overflow-hidden rounded-lg">
-          <Link className="absolute inset-0 z-10" href="#">
-            <span className="sr-only">View</span>
-          </Link>
-          <img
-            alt="3D Model 4"
-            className="object-cover w-full h-60"
-            height={300}
-            src="/placeholder.svg"
-            style={{
-              aspectRatio: "400/300",
-              objectFit: "cover",
-            }}
-            width={400} />
-          <div
-            className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="text-white text-center space-y-2">
-              <h3 className="text-lg font-semibold">Vintage Car</h3>
-              <p className="text-sm">A highly detailed 3D model of a vintage car.</p>
-            </div>
-          </div>
-        </div>
-        <div className="relative group overflow-hidden rounded-lg">
-          <Link className="absolute inset-0 z-10" href="#">
-            <span className="sr-only">View</span>
-          </Link>
-          <img
-            alt="3D Model 5"
-            className="object-cover w-full h-60"
-            height={300}
-            src="/placeholder.svg"
-            style={{
-              aspectRatio: "400/300",
-              objectFit: "cover",
-            }}
-            width={400} />
-          <div
-            className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="text-white text-center space-y-2">
-              <h3 className="text-lg font-semibold">Futuristic Building</h3>
-              <p className="text-sm">A highly detailed 3D model of a futuristic building.</p>
-            </div>
-          </div>
-        </div>
-        <div className="relative group overflow-hidden rounded-lg">
-          <Link className="absolute inset-0 z-10" href="#">
-            <span className="sr-only">View</span>
-          </Link>
-          <img
-            alt="3D Model 6"
-            className="object-cover w-full h-60"
-            height={300}
-            src="/placeholder.svg"
-            style={{
-              aspectRatio: "400/300",
-              objectFit: "cover",
-            }}
-            width={400} />
-          <div
-            className="absolute inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="text-white text-center space-y-2">
-              <h3 className="text-lg font-semibold">Fantasy Landscape</h3>
-              <p className="text-sm">A highly detailed 3D model of a fantasy landscape.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    
-  </>);
+      <CivitaiPage/>
+      {/* <ImageFeeds /> */}
+    </div>
+  )
 }

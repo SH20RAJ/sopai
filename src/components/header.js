@@ -16,24 +16,9 @@ export default function Header() {
       </Link>
       <nav className="hidden md:flex items-center gap-4">
         <Link
-          className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 font-medium"
-          href="#">
-          3D Models
-        </Link>
-        <Link
-          className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 font-medium"
-          href="#">
-          Textures
-        </Link>
-        <Link
-          className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 font-medium"
-          href="#">
-          Brushes
-        </Link>
-        <Link
-          className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50 font-medium"
-          href="#">
-          Plugins
+          className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+          href="https://shaswat.live">
+          Contact
         </Link>
       </nav>
       <div className="relative w-full max-w-md">
